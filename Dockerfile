@@ -1,14 +1,11 @@
-FROM python:3.7-alpine
-LABEL author=KHAJA
-LABEL blog=directdevops.blog
-ARG HOME_DIR='/studentcourses'
-ADD . $HOME_DIR
-ENV MYSQL_USERNAME='directdevops'
-ENV MYSQL_PASSWORD='directdevops'
-ENV MYSQL_SERVER='localhost'
+FROM python:3.8-alpine3.15
+ADD . flask/
+ENV MYSQL_DATABASE='adithyadb'
+ENV MYSQL_USER='adithya'     
+ENV MYSQL_PASSWORD='adithya'
 ENV MYSQL_SERVER_PORT='3306'
-ENV MYSQL_DATABASE='test'
+ENV MYSQL_SERVER='localhost'
 EXPOSE 8080
-WORKDIR $HOME_DIR
+WORKDIR flask
 RUN pip install -r requirements.txt
-ENTRYPOINT ["python", "app.py"]
+ENTRYPOINT ["python","app.py"]
